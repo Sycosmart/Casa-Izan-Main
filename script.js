@@ -31,11 +31,11 @@
     copyBtn.addEventListener('click', () => {
       navigator.clipboard.writeText(promoCode.textContent.trim())
         .then(() => {
-          showToast(`Código ${promoCode.textContent.trim()} copiado`);
-          copyBtn.textContent = '¡Copiado!';
+          showToast('Codigo ' + promoCode.textContent.trim() + ' copiado');
+          copyBtn.textContent = 'Copiado';
           setTimeout(() => (copyBtn.textContent = 'Copiar'), 1800);
         })
-        .catch(() => showToast('No pudimos copiar el código'));
+        .catch(() => showToast('No pudimos copiar el codigo'));
     });
   }
 
@@ -63,6 +63,26 @@
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
+  // Gallery filter
+  const filterBtns = document.querySelectorAll('.gf-btn');
+  const galleryCards = document.querySelectorAll('.gallery-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      galleryCards.forEach(card => {
+        if (filter === 'todos' || card.dataset.cat === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+
   // Smooth anchor scroll
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', (e) => {
@@ -76,7 +96,7 @@
     });
   });
 
-  // Lead form → open WhatsApp with prefilled message
+  // Lead form -> open WhatsApp with prefilled message
   const form = document.getElementById('leadForm');
   if (form) {
     form.addEventListener('submit', (e) => {
@@ -89,17 +109,17 @@
       const message = (data.get('message') || '').toString().trim();
 
       const lines = [
-        `Hola Casa Izan, soy ${name}.`,
-        `Ciudad: ${city}`,
-        `Me interesa: ${interest}`,
-        phone ? `Mi WhatsApp: ${phone}` : null,
-        message ? `Mensaje: ${message}` : null,
+        'Hola Casa Izan, soy ' + name + '.',
+        'Ciudad: ' + city,
+        'Me interesa: ' + interest,
+        phone ? 'Mi WhatsApp: ' + phone : null,
+        message ? 'Mensaje: ' + message : null,
         '',
-        'Vengo desde su anuncio y me gustaría recibir más información.'
+        'Vengo desde su anuncio y me gustaria recibir mas informacion.'
       ].filter(Boolean).join('\n');
 
-      const waUrl = `https://wa.me/59171234567?text=${encodeURIComponent(lines)}`;
-      showToast('Abriendo WhatsApp…');
+      const waUrl = 'https://wa.me/59171234567?text=' + encodeURIComponent(lines);
+      showToast('Abriendo WhatsApp...');
       setTimeout(() => window.open(waUrl, '_blank', 'noopener'), 400);
     });
   }

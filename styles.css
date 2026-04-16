@@ -1,5 +1,6 @@
 /* ==========================================================================
    CASA IZAN · LANDING PAGE (ADS) · STYLES
+   Deporte y Juguetes
    ========================================================================== */
 
 :root {
@@ -85,6 +86,7 @@ img { display: block; max-width: 100%; }
 }
 .btn-arrow { transition: transform 0.3s var(--ease); }
 .btn:hover .btn-arrow { transform: translateX(5px); }
+.btn-primary svg { fill: currentColor; }
 
 .kicker {
   display: inline-block;
@@ -322,7 +324,7 @@ nav ul a:hover::after { width: 100%; }
   font-size: 15px;
   font-weight: 500;
 }
-.hero-bullets li span {
+.check-icon {
   width: 24px;
   height: 24px;
   background: var(--sol);
@@ -331,8 +333,6 @@ nav ul a:hover::after { width: 100%; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 800;
-  font-size: 13px;
   flex-shrink: 0;
 }
 
@@ -342,7 +342,6 @@ nav ul a:hover::after { width: 100%; }
   flex-wrap: wrap;
   margin-bottom: 44px;
 }
-.btn-primary svg { fill: currentColor; }
 
 .hero-trust {
   display: flex;
@@ -422,16 +421,18 @@ section .lead {
 }
 
 /* ==========================================================================
-   MUNDOS
+   MUNDOS (2 categories)
    ========================================================================== */
 .mundos { background: #fff; }
 .mundos-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   margin-top: 20px;
 }
-@media (max-width: 900px) { .mundos-grid { grid-template-columns: 1fr; } }
+.mundos-grid-2 {
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 900px) { .mundos-grid-2 { grid-template-columns: 1fr; } }
 
 .mundo {
   padding: 36px 32px;
@@ -443,10 +444,23 @@ section .lead {
   overflow: hidden;
 }
 .mundo:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(26,27,58,0.12); }
-.mundo-hogar { background: var(--lino); border: 1px solid rgba(26,27,58,0.08); }
 .mundo-deporte { background: var(--rosa); color: var(--lino); }
 .mundo-deporte em, .mundo-deporte .mundo-link { color: var(--sol); }
 .mundo-juguetes { background: var(--sol); color: var(--noche); }
+
+.mundo-icon {
+  width: 64px; height: 64px;
+  background: rgba(26,27,58,0.1);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.mundo-deporte .mundo-icon { background: rgba(244,239,230,0.15); color: var(--lino); }
+.mundo-deporte .mundo-icon svg { stroke: var(--lino); }
+.mundo-juguetes .mundo-icon { background: rgba(26,27,58,0.1); }
+.mundo-juguetes .mundo-icon svg { stroke: var(--noche); }
 
 .mundo-num {
   font-family: var(--display);
@@ -466,7 +480,13 @@ section .lead {
 }
 .mundo h3 {
   font-size: 26px;
+  margin-bottom: 14px;
+}
+.mundo > p {
+  font-size: 14px;
+  opacity: 0.85;
   margin-bottom: 20px;
+  line-height: 1.55;
 }
 .mundo ul {
   list-style: none;
@@ -475,7 +495,6 @@ section .lead {
   border-bottom: 1px solid currentColor;
   flex: 1;
 }
-.mundo-hogar ul { border-color: rgba(26,27,58,0.12); }
 .mundo-deporte ul { border-color: rgba(244,239,230,0.2); }
 .mundo-juguetes ul { border-color: rgba(26,27,58,0.15); }
 .mundo li {
@@ -503,9 +522,113 @@ section .lead {
 .mundo-link:hover { transform: translateX(6px); }
 
 /* ==========================================================================
+   GALERIA DE PRODUCTOS
+   ========================================================================== */
+.galeria { background: var(--lino); }
+
+.gallery-filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.gf-btn {
+  padding: 12px 24px;
+  background: #fff;
+  border: 2px solid transparent;
+  border-radius: 100px;
+  font-family: var(--body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--noche);
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+}
+.gf-btn:hover { border-color: var(--rosa); }
+.gf-btn.active {
+  background: var(--noche);
+  color: var(--lino);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+@media (max-width: 900px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .gallery-grid { grid-template-columns: 1fr; } }
+
+.gallery-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(26,27,58,0.08);
+  transition: all 0.4s var(--ease);
+}
+.gallery-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px rgba(26,27,58,0.1);
+}
+.gallery-card.hidden { display: none; }
+
+.gallery-img {
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.gi-1 { background: linear-gradient(135deg, var(--rosa) 0%, #d12a4e 100%); }
+.gi-2 { background: linear-gradient(135deg, var(--lino) 0%, #e8dfd0 100%); }
+.gi-3 { background: linear-gradient(135deg, var(--sol) 0%, #e8dc3a 100%); }
+.gi-4 { background: linear-gradient(135deg, var(--noche) 0%, #2d2f5a 100%); }
+.gi-5 { background: linear-gradient(135deg, #ffe8ee 0%, var(--rosa) 30%); }
+.gi-6 { background: linear-gradient(135deg, var(--sol) 30%, var(--lino) 100%); }
+
+.gi-shape {
+  opacity: 0.5;
+  transition: opacity 0.4s;
+}
+.gallery-card:hover .gi-shape { opacity: 0.8; }
+
+.gallery-body {
+  padding: 24px;
+}
+.gallery-cat {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rosa);
+  margin-bottom: 8px;
+  display: block;
+}
+.gallery-body h4 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+.gallery-body p {
+  font-size: 13px;
+  color: rgba(26,27,58,0.7);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.gallery-price {
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--noche);
+}
+
+.gallery-cta {
+  text-align: center;
+  margin-top: 48px;
+}
+
+/* ==========================================================================
    OFERTA
    ========================================================================== */
-.oferta { background: var(--lino); }
+.oferta { background: #fff; }
 .oferta-card {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
@@ -638,7 +761,7 @@ section .lead {
 /* ==========================================================================
    BENEFITS
    ========================================================================== */
-.benefits { background: #fff; text-align: center; }
+.benefits { background: var(--lino); text-align: center; }
 .benefits h2 { margin-left: auto; margin-right: auto; }
 .benefits-grid {
   display: grid;
@@ -650,15 +773,20 @@ section .lead {
 @media (max-width: 520px) { .benefits-grid { grid-template-columns: 1fr; } }
 .benefit {
   padding: 32px 24px;
-  background: var(--lino);
+  background: #fff;
   border-radius: 16px;
   border: 1px solid rgba(26,27,58,0.06);
   transition: all 0.4s var(--ease);
 }
 .benefit:hover { transform: translateY(-6px); }
 .b-icon {
-  font-size: 40px;
-  margin-bottom: 14px;
+  width: 56px; height: 56px;
+  margin: 0 auto 16px;
+  background: rgba(255,53,94,0.06);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .benefit h4 {
   font-size: 20px;
@@ -673,7 +801,7 @@ section .lead {
 /* ==========================================================================
    TESTIMONIOS
    ========================================================================== */
-.testimonios { background: var(--lino); }
+.testimonios { background: #fff; }
 .testi-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -683,16 +811,14 @@ section .lead {
 @media (max-width: 900px) { .testi-grid { grid-template-columns: 1fr; } }
 .testi {
   padding: 32px;
-  background: #fff;
+  background: var(--lino);
   border-radius: 16px;
   border: 1px solid rgba(26,27,58,0.08);
 }
 .stars {
-  color: var(--sol);
-  font-size: 18px;
-  letter-spacing: 2px;
+  display: flex;
+  gap: 2px;
   margin-bottom: 16px;
-  text-shadow: 0 0 1px var(--noche);
 }
 .testi p {
   font-size: 15px;
@@ -734,7 +860,7 @@ section .lead {
 /* ==========================================================================
    TIENDAS
    ========================================================================== */
-.tiendas { background: #fff; }
+.tiendas { background: var(--lino); }
 .tiendas-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -744,7 +870,7 @@ section .lead {
 @media (max-width: 900px) { .tiendas-grid { grid-template-columns: 1fr; } }
 .tienda {
   padding: 32px 28px;
-  background: var(--lino);
+  background: #fff;
   border-radius: 16px;
   border: 1px solid rgba(26,27,58,0.08);
   transition: all 0.4s var(--ease);
@@ -764,13 +890,17 @@ section .lead {
 }
 .tienda-badge {
   padding: 5px 10px;
-  background: var(--sol);
-  color: var(--noche);
+  background: var(--wa);
+  color: #fff;
   border-radius: 100px;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+.badge-pronto {
+  background: var(--sol);
+  color: var(--noche);
 }
 .tienda-row {
   padding: 10px 0;
@@ -781,9 +911,15 @@ section .lead {
   align-items: flex-start;
   color: rgba(26,27,58,0.8);
 }
-.tienda-row span {
+.tienda-row svg {
   flex-shrink: 0;
-  font-size: 16px;
+  margin-top: 2px;
+  color: var(--rosa);
+  stroke: var(--rosa);
+}
+.pronto-msg {
+  font-style: italic;
+  color: rgba(26,27,58,0.6);
 }
 .tienda-cta {
   display: inline-block;
@@ -799,6 +935,18 @@ section .lead {
 .tienda-cta:hover {
   background: var(--noche);
   transform: translateY(-2px);
+}
+.tienda-cta-pronto {
+  background: var(--noche);
+}
+.tienda-cta-pronto:hover { background: var(--rosa); }
+
+.tienda-proximamente {
+  border: 2px dashed rgba(26,27,58,0.18);
+  background: rgba(255,255,255,0.5);
+}
+.tienda-proximamente .tienda-head {
+  border-color: var(--sol);
 }
 
 /* ==========================================================================
@@ -832,25 +980,72 @@ section .lead {
 .contact-text p {
   font-size: 17px;
   opacity: 0.8;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
   line-height: 1.6;
 }
-.contact-bullets {
-  list-style: none;
+
+.contact-channels {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 32px;
 }
-.contact-bullets li {
-  padding: 10px 0 10px 26px;
-  font-size: 14px;
-  position: relative;
-  opacity: 0.85;
-  border-bottom: 1px solid rgba(244,239,230,0.1);
+.channel {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: rgba(244,239,230,0.05);
+  border: 1px solid rgba(244,239,230,0.12);
+  border-radius: 12px;
 }
-.contact-bullets li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: var(--sol);
-  font-weight: 800;
+.channel svg { flex-shrink: 0; }
+.channel strong {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(244,239,230,0.6);
+  margin-bottom: 2px;
+}
+.channel a {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--lino);
+  transition: color 0.3s;
+}
+.channel a:hover { color: var(--sol); }
+
+.contact-social {
+  padding-top: 24px;
+  border-top: 1px solid rgba(244,239,230,0.12);
+}
+.contact-social > strong {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(244,239,230,0.6);
+  margin-bottom: 14px;
+}
+.social-links {
+  display: flex;
+  gap: 14px;
+}
+.social-links a {
+  width: 44px; height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(244,239,230,0.06);
+  border: 1px solid rgba(244,239,230,0.12);
+  border-radius: 10px;
+  color: var(--lino);
+  transition: all 0.3s var(--ease);
+}
+.social-links a:hover {
+  background: var(--rosa);
+  border-color: var(--rosa);
+  transform: translateY(-2px);
 }
 
 .contact-form {
@@ -959,6 +1154,26 @@ footer .logo { color: var(--lino); }
   transition: opacity 0.3s;
 }
 .foot-links a:hover { opacity: 1; color: var(--sol); }
+.foot-social {
+  display: flex;
+  gap: 12px;
+}
+.foot-social a {
+  width: 38px; height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(244,239,230,0.06);
+  border: 1px solid rgba(244,239,230,0.12);
+  border-radius: 8px;
+  color: var(--lino);
+  transition: all 0.3s var(--ease);
+}
+.foot-social a:hover {
+  background: var(--rosa);
+  border-color: var(--rosa);
+  transform: translateY(-2px);
+}
 .foot-bottom {
   display: flex;
   justify-content: space-between;
